@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+
+
+        <app-search-star></app-search-star>
+        <!-- Affichage du nom des stars -->
+        <div *ngFor="let star of listOfStars" class="col s8 m6">
+            <div (click)="goToStar(star)" class="card large horizontal" starBorderCard>
+                <div class="card-image">
+                    <img [src]="star.picture">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{ star.name }}</p>
+                        <p><small> Star ajoutée le {{ star.createdOn | date:"dd/MM/yyyy" | uppercase}}</small></p>
+                        <span 
+                            *ngFor="let type of star.types" 
+                            class="{{ type | starTypeColor }}"
+                        >
+                            {{ type }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<a 
+    class="btn-floating btn-large waves-effect waves-light red z-depth-3"
+    style="position: fixed; bottom: 25px;"
+    routerLink="/star/add"
+>
++
+</a>
